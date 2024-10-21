@@ -1,0 +1,546 @@
+{
+  "openapi": "3.0.1",
+  "x-stoplight": {
+    "id": "93njdclpz9a4u"
+  },
+  "info": {
+    "version": "v1.0",
+    "title": "Finance & Accounting S4",
+    "description": "Finance & Accounting API, Source application : S4",
+    "contact": {
+      "email": "dsi-data-integration-run@vinci-construction.com",
+      "name": "HIP"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api-tst.vinci-construction.net/finance/sap/{version}",
+      "description": "TYK tst",
+      "variables": {
+        "version": {
+          "default": "v1",
+          "enum": [
+            "v1"
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://api-tst.vinci-construction.net/finance/sap/{version}",
+      "description": "TYK ppd",
+      "variables": {
+        "version": {
+          "default": "v1",
+          "enum": [
+            "v1"
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://api-tst.vinci-construction.net/finance/sap/{version}",
+      "description": "TYK prd",
+      "variables": {
+        "version": {
+          "default": "v1",
+          "enum": [
+            "v1"
+          ]
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/customers": {
+      "get": {
+        "summary": "allows external applications to retrieve customer master data.",
+        "tags": [
+          "Customer"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response - list of ressources found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "../models/Customer.json"
+                  }
+                }
+              }
+            },
+            "headers": {
+              "X-Vcsi-Infa-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Technical id - it can be used to retreive a specific request if needed"
+              },
+              "X-Vcsi-Tyk-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Technical id - it can be used to retreive a specific request if needed"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "stoplight://resources/overrides/VYjK1v2fwVU"
+                }
+              }
+            },
+            "headers": {
+              "X-Vcsi-Infa-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Technical id - it can be used to retreive a specific request if needed"
+              },
+              "X-Vcsi-Tyk-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Technical id - it can be used to retreive a specific request if needed"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "stoplight://resources/overrides/IQZYGQVeeX8"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "stoplight://resources/overrides/szobKOyo7Os"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "headers": {
+              "X-Vcsi-Infa-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Technical id - it can be used to retreive a specific request if needed"
+              },
+              "X-Vcsi-Tyk-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Technical id - it can be used to retreive a specific request if needed"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "stoplight://resources/overrides/ARsAO0lY1Wk"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-customer",
+        "x-stoplight": {
+          "id": "rb544pxklexid"
+        },
+        "description": "allows external applications to retrieve customer master data.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "1410000613,2110009405"
+            },
+            "in": "query",
+            "name": "customerIds",
+            "description": "Comma separated list of customerIds"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 4,
+              "example": "B890"
+            },
+            "in": "query",
+            "name": "salesOrganizationId",
+            "description": "An organizational unit responsible for the sale of certain products or services. The responsibility of a sales organization may include legal liability for products and customer claims."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "default": 10,
+              "maximum": 10
+            },
+            "in": "query",
+            "name": "limit",
+            "description": "Maximum number of results to return, by default, limit is 10"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "in": "query",
+            "name": "offset",
+            "description": "Rank of 1st result to be returned"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Vcsi-Client-Request-Id",
+            "description": "Optionnal corellation id that you can send to help us retreive your request in case of failure."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2024-03-26T09:22:15Z"
+            },
+            "in": "query",
+            "name": "startDate",
+            "description": "creationDate >= startDate. Date format : YYYY-MM-DDTHH:MM:SSZ "
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2024-03-26T09:22:15Z"
+            },
+            "in": "query",
+            "name": "endDate",
+            "description": "creationDate <= endDate. Date format : YYYY-MM-DDTHH:MM:SSZ"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 4,
+              "example": "A067"
+            },
+            "in": "query",
+            "name": "plantId",
+            "description": "Key uniquely identifying a plant."
+          }
+        ],
+        "requestBody": {
+          "content": {}
+        }
+      }
+    },
+    "/customers/{customerId}": {
+      "get": {
+        "summary": "allows external applications to retrieve customer master data.",
+        "tags": [
+          "Customer"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response - list of ressources found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../models/Customer.json"
+                }
+              }
+            },
+            "headers": {
+              "X-Vcsi-Infa-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Technical id - it can be used to retreive a specific request if needed"
+              },
+              "X-Vcsi-Tyk-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Technical id - it can be used to retreive a specific request if needed"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "stoplight://resources/overrides/VYjK1v2fwVU"
+                }
+              }
+            },
+            "headers": {
+              "X-Vcsi-Infa-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Technical id - it can be used to retreive a specific request if needed"
+              },
+              "X-Vcsi-Tyk-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Technical id - it can be used to retreive a specific request if needed"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "stoplight://resources/overrides/IQZYGQVeeX8"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "stoplight://resources/overrides/szobKOyo7Os"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "headers": {
+              "X-Vcsi-Infa-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Technical id - it can be used to retreive a specific request if needed"
+              },
+              "X-Vcsi-Tyk-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Technical id - it can be used to retreive a specific request if needed"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "stoplight://resources/overrides/ARsAO0lY1Wk"
+                }
+              }
+            }
+          }
+        },
+        "x-stoplight": {
+          "id": "rb544pxklexid"
+        },
+        "description": "allows external applications to retrieve customer master data.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Vcsi-Client-Request-Id",
+            "description": "Optionnal corellation id that you can send to help us retreive your request in case of failure."
+          }
+        ],
+        "operationId": "get-cutomer-customerId"
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string",
+            "example": "1410000613"
+          },
+          "name": "customerId",
+          "in": "path",
+          "required": true,
+          "description": "CustomerId to retreive."
+        }
+      ]
+    },
+    "/customer-events": {
+      "get": {
+        "summary": "allows to retrieve customer data",
+        "responses": {
+          "200": {
+            "description": "Return list of customer events",
+            "headers": {
+              "X-Vcsi-Infa-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Technical id - it can be used to retrieve a specific request if needed"
+              },
+              "X-Vcsi-Tyk-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Technical id - it can be used to retrieve a specific request if needed"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "../models/CustomerEvents.json"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "headers": {
+              "X-Vcsi-Tyk-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Technical id - it can be used to retrieve a specific request if needed"
+              },
+              "X-Vcsi-Infa-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Technical id - it can be used to retrieve a specific request if needed"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "stoplight://resources/overrides/VYjK1v2fwVU"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "stoplight://resources/overrides/IQZYGQVeeX8"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "stoplight://resources/overrides/szobKOyo7Os"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "headers": {
+              "X-Vcsi-Tyk-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Technical id - it can be used to retrieve a specific request if needed"
+              },
+              "X-Vcsi-Infa-Request-Id": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Technical id - it can be used to retrieve a specific request if needed"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "stoplight://resources/overrides/ARsAO0lY1Wk"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-customer-events",
+        "x-stoplight": {
+          "id": "d64a23eo163cw"
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "startDate",
+            "description": "Start date. Expected format datetime YYYY-MM-DDTHH:MM:SSZ (ISO8601)."
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "endDate",
+            "description": "End date. Expected format datetime YYYY-MM-DDTHH:MM:SSZ (ISO8601)."
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "offset",
+            "description": "Rank of 1st result to be returned"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "limit",
+            "description": "Maximum number of results to return, by default, limit is 10"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "X-Vcsi-Client-Request-Id",
+            "description": "Optional correlation id that you can send to help us retrieve your request in case of failure."
+          }
+        ],
+        "tags": [
+          "Customer"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Customer"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+      }
+    },
+    "schemas": {}
+  },
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ]
+}
