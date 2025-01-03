@@ -1,8 +1,8 @@
 openapi: 3.1.0
 x-stoplight:
-  id: 9bo16jdwfubhc
+  id: 2twkq3n2egy4k
 info:
-  title: Auth
+  title: test3.0
   version: '1.0'
 servers:
   - url: 'http://localhost:3000'
@@ -14,11 +14,11 @@ paths:
         name: userId
         in: path
         required: true
-        description: Id of an existing user..end...
+        description: Id of an existing user.
     get:
       summary: Get User Info by User ID
       x-stoplight:
-        id: zgtj0h5pao6ic
+        id: 5mophfkteh1tq
       tags: []
       responses:
         '200':
@@ -94,12 +94,12 @@ paths:
                   dateOfBirth: '1985-10-02'
         description: Patch user properties to update.
       x-stoplight:
-        id: ggp4qy3vlvr6i
+        id: 3bnl00ata8a8e
   /user:
     post:
       summary: Create New User
       x-stoplight:
-        id: a9x0q064k7t4t
+        id: m56tuohwwywht
       operationId: post-user
       responses:
         '200':
@@ -156,7 +156,7 @@ components:
     User:
       title: User
       x-stoplight:
-        id: 5yovnzkf34h53
+        id: 9jx2uuccx6sow
       type: object
       description: ''
       examples:
@@ -172,37 +172,37 @@ components:
           type: integer
           description: Unique identifier for the given user.
           x-stoplight:
-            id: m1p6vc9wfyv9k
+            id: wup5kqms8uovm
         firstName:
           type: string
           x-stoplight:
-            id: 35mq7vv0xgpj6
+            id: gxx5ojn81a3xq
         lastName:
           type: string
           x-stoplight:
-            id: jppnzy6eeie9k
+            id: ervctsx72e7co
         email:
           type: string
           format: email
           x-stoplight:
-            id: c2i3es8viz02r
+            id: yv9saun78tovz
         dateOfBirth:
           type: string
           format: date
           example: '1997-10-31'
           x-stoplight:
-            id: kdf8w1wkev2bp
+            id: 4i9veoszr3kc1
         emailVerified:
           type: boolean
           description: Set to true if the user's email has been verified.
           x-stoplight:
-            id: 4sz7vzqqhfuvt
+            id: ygave5fvlmf0m
         createDate:
           type: string
           format: date
           description: The date that the user was created.
           x-stoplight:
-            id: 6o7bkr67i7ui6
+            id: bq8cr4ns96wwl
       required:
         - id
         - firstName

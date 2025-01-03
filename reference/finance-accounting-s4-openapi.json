@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "x-stoplight": {
-    "id": "93njdclpz9a4u"
+    "id": "3npgmik62tgkk"
   },
   "info": {
     "version": "v1.0",
@@ -245,6 +245,9 @@
     "/customers/{customerId}": {
       "get": {
         "summary": "allows external applications to retrieve customer master data.",
+        "x-stoplight": {
+          "id": "w4ar10zac0ov9"
+        },
         "tags": [
           "Customer"
         ],
@@ -341,9 +344,6 @@
               }
             }
           }
-        },
-        "x-stoplight": {
-          "id": "rb544pxklexid"
         },
         "description": "allows external applications to retrieve customer master data.",
         "parameters": [
